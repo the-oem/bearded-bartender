@@ -1,16 +1,13 @@
-_site
-.DS_Store
-.jekyll
-.jekyll-metadata
-.bundle
-.sass-cache
+# Misc
 Gemfile
 Gemfile.lock
-node_modules
-package.json
+_site
+.sass-cache
+.jekyll
+.jekyll-metadata
 
-
-# Misc
+# API Keys
+*apiKey.js
 
 # Ignore Mac DS_Store
 *.DS_Store
@@ -38,6 +35,8 @@ coverage
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
+*bundle.js
+*bundle.js.map
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
