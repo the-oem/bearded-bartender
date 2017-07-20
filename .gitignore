@@ -6,6 +6,9 @@ _site
 .jekyll
 .jekyll-metadata
 
+# API Keys
+*apiKey.js
+
 # Ignore Mac DS_Store
 *.DS_Store
 
