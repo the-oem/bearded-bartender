@@ -1,6 +1,8 @@
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('../knexfile')[environment];
 const db = require('knex')(configuration);
+const request = require('request');
+const constants = require('./constants');
 
 function getAllUsers(req, res) {
   db('users').select()
@@ -48,8 +50,9 @@ function addFavorite(req, res) {
 }
 
 function getAllFavorites(req, res) {
-  req.params.id = parseInt(req.params.id, 10);
-  db('favorites').where('user_id', parseInt(req.params.id, 10)).select()
+  const userId = parseInt(req.params.id, 10);
+
+  db('favorites').where('user_id', userId).select()
     .then((favorites) => {
       res.status(200).json(favorites);
     })
@@ -71,6 +74,17 @@ function deleteFavorite(req, res) {
     .catch(error => res.status(500).json({ error }));
 }
 
+function getDrinks(req, res) {
+  request({
+    uri: constants.GET_DRINKS_URL,
+    json: true,
+  }, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      res.send(body);
+    }
+  });
+}
+
 module.exports = {
   getAllUsers,
   getUser,
@@ -78,4 +92,5 @@ module.exports = {
   addFavorite,
   getAllFavorites,
   deleteFavorite,
+  getDrinks,
 };

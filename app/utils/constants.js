@@ -1,4 +1,9 @@
-import { API_KEY, APP_ID } from './ADDbApiKey';
+export const USE_CACHE = true;
 
-export const BASE_URL = 'http://addb.absolutdrinks.com';
-export const DRINKS_URL = `${BASE_URL}/drinks/${API_KEY}`;
+export const GET_USER_URL = '/api/users';
+export const CREATE_USER_URL = '/api/users/new';
+export const ADD_FAVORITE_URL = '/api/users/favorites/new';
+export const GET_FAVORITES_URL = '/api/users/{user_id}/favorites';
+export const DELETE_FAVORITE_URL = '/api/users/{user_id}/favorites/{drink_id}';
+
+export const GET_DRINKS_URL = '/api/drinks';
