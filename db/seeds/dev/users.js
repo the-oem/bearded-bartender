@@ -1,15 +1,25 @@
 
 exports.seed = function (knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('favorites').del()
+    .then(() => knex('users').del())
     .then(() => {
-      // Inserts seed entries
-      return knex('users').insert([
-        { id: 1, first_name: 'Jason', last_name: 'Collins', email: '1@1.com', password: 'password', last_activity: knex.fn.now() },
-        { id: 2, first_name: 'Doctor', last_name: 'Who', email: '2@2.com', password: 'password', last_activity: knex.fn.now() },
-        { id: 3, first_name: 'Tay', last_name: 'Tay', email: '3@3.com', password: 'password', last_activity: knex.fn.now() },
-        { id: 4, first_name: 'Yung', last_name: 'Jhun', email: '4@4.com', password: 'password', last_activity: knex.fn.now() },
-        { id: 5, first_name: 'Ron', last_name: 'Swanson', email: '5@5.com', password: 'password', last_activity: knex.fn.now() },
+      return Promise.all([
+        knex('users').insert({
+          first_name: 'Jason',
+          last_name: 'Collins',
+          email: '1@1.com',
+          password: 'password',
+          last_activity: knex.fn.now(),
+        }, 'id')
+        .then((user) => {
+          return knex('favorites').insert([
+            { user_id: user[0], drink_id: 12345 },
+            { user_id: user[0], drink_id: 54321 },
+          ]);
+        })
+        .then(() => console.log('Seeding complete!'))
+        .catch(error => console.log(`Error seeding data: ${error}`)),
       ]);
-    });
+    })
+    .catch(error => console.log(`Error seeding data: ${error}`));
 };
