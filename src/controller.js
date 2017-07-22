@@ -77,7 +77,7 @@ function deleteFavorite(req, res) {
 
 function getDrinks(req, res) {
   request({
-    uri: constants.DRINKS_URL + apiKey.API_KEY,
+    uri: constants.DRINKS_URL + apiKey.API_KEY + constants.PAGE_SIZE_10,
     json: true,
   }, (error, response, body) => {
     if (!error && response.statusCode === 200) {
@@ -87,10 +87,9 @@ function getDrinks(req, res) {
 }
 
 function getDrinksSearch(req, res) {
-  // console.log('search url', constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY);
-  // console.log('body', req.body.input);
+  console.log(constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY + constants.PAGE_SIZE_10);
   request({
-    uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY,
+    uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY + constants.PAGE_SIZE_10,
     json: true,
   }, (error, response, body) => {
     if (!error && response.statusCode === 200) res.status(200).send(body);
