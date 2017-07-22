@@ -3,6 +3,7 @@ const configuration = require('../knexfile')[environment];
 const db = require('knex')(configuration);
 const request = require('request');
 const constants = require('./constants');
+const apiKey = require('./ADDbApiKey');
 
 function getAllUsers(req, res) {
   db('users').select()
@@ -76,11 +77,29 @@ function deleteFavorite(req, res) {
 
 function getDrinks(req, res) {
   request({
-    uri: constants.GET_DRINKS_URL,
+    uri: constants.DRINKS_URL + apiKey.API_KEY,
     json: true,
   }, (error, response, body) => {
     if (!error && response.statusCode === 200) {
       res.send(body);
+    }
+  });
+}
+
+function getDrinksSearch(req, res) {
+  // console.log('search url', constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY);
+  // console.log('body', req.body.input);
+  request({
+    uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY,
+    json: true,
+  }, (error, response, body) => {
+    // console.log('======= ERROR ========', error);
+    // console.log('======= BODY ========', body);
+    if (!error && response.statusCode === 200) {
+      res.status(200).send(body);
+    } else {
+      console.log('error');
+      // console.log('======= ERROR ========', error);
     }
   });
 }
@@ -93,4 +112,5 @@ module.exports = {
   getAllFavorites,
   deleteFavorite,
   getDrinks,
+  getDrinksSearch,
 };

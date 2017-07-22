@@ -1,4 +1,3 @@
-// const Server = require('./server');
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
@@ -12,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV !== 'production') {
+if (app.get('env') === 'development') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -24,6 +23,21 @@ if (process.env.NODE_ENV !== 'production') {
     noInfo: true,
     publicPath: config.output.publicPath,
   }));
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err,
+    });
+  });
+} else {
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: {},
+    });
+  });
 }
 
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));

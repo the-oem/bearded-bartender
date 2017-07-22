@@ -11,7 +11,8 @@ export default class Search extends Component {
 
   handleSearch(e) {
     e.preventDefault();
-    console.log('search term', this.state.input);
+    console.log('search term in component', this.state.input);
+    this.props.fetchDrinksSearch(this.state.input);
   }
 
   render() {
