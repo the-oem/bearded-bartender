@@ -18,11 +18,10 @@ export const itemsIsLoading = (state = false, action) => {
   }
 };
 
-export const items = (state = [], action) => {
-  console.log('items reducer firing...', action);
+export const items = (state = {}, action) => {
   switch (action.type) {
     case 'ITEMS_FETCH_DATA_SUCCESS':
-      return [...action.results];
+      return action.results;
 
     default:
       return state;

@@ -15,7 +15,7 @@ export const itemsIsLoading = (bool) => {
 };
 
 export const itemsFetchDataSuccess = (results) => {
-  console.log('itemsFetchDataSuccess firing...', results);
+  console.log('ITEMS_FETCH_DATA_SUCCESS firing...', results);
   return {
     type: 'ITEMS_FETCH_DATA_SUCCESS',
     results,

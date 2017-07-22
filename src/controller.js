@@ -93,14 +93,7 @@ function getDrinksSearch(req, res) {
     uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY,
     json: true,
   }, (error, response, body) => {
-    // console.log('======= ERROR ========', error);
-    // console.log('======= BODY ========', body);
-    if (!error && response.statusCode === 200) {
-      res.status(200).send(body);
-    } else {
-      console.log('error');
-      // console.log('======= ERROR ========', error);
-    }
+    if (!error && response.statusCode === 200) res.status(200).send(body);
   });
 }
 

@@ -16,6 +16,7 @@ export default class Search extends Component {
   }
 
   render() {
+    console.log('props', this.props);
     return (
       <div>
         <form onSubmit={this.handleSearch}>
