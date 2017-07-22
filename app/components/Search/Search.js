@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import DrinkList from '../DrinkList/DrinkList';
+import Logo from '../Logo/Logo';
 
 export default class Search extends Component {
   constructor(props) {
@@ -9,20 +11,28 @@ export default class Search extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({ input: '' });
+  }
+
   handleSearch(e) {
     e.preventDefault();
-    console.log('search term in component', this.state.input);
     this.props.fetchDrinksSearch(this.state.input);
   }
 
   render() {
-    console.log('props', this.props);
     return (
       <div>
+        <Logo />
         <form onSubmit={this.handleSearch}>
           <input type='text' value={this.state.input} placeholder='Search for a drink...' onChange={e => this.setState({ input: e.target.value })}/>
           <button>Search</button>
         </form>
+        {this.props.items.result &&
+          <div>
+            <DrinkList results={this.props.items} />
+          </div>
+        }
       </div>
     );
   }
