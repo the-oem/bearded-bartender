@@ -1,13 +1,20 @@
 import { connect } from 'react-redux';
 import Login from '../../components/Login/Login';
+import { lookupUserAction, userIsAuthenticated } from '../../actions/users';
 
-const mapStateToProps = state => state;
+const mapStateToProps = (state) => {
+  console.log('mapStateToProps', state);
+  return {
+    errorMessage: state.userAuthenticationFailure.message,
+    user: state.userAuthenticationSuccess,
+    userIsAuthenticated: state.userIsAuthenticated,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleAuthentication: (state) => {
-      dispatch(makeUserCall(state));
-    },
+    handleAuthentication: state => dispatch(lookupUserAction(state)),
+    handleLogout: () => dispatch(userIsAuthenticated(false)),
   };
 };
 

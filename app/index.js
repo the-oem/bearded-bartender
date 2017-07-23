@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import createHistory from 'history/createBrowserHistory';
-import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import { Provider } from 'react-redux';
-import App from './components/app.jsx';
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+import { Route } from 'react-router-dom';
+import AppContainer from './containers/App/AppContainer';
 import rootReducer from './reducers';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const history = createHistory();
 const middleware = routerMiddleware(history);
 const store = createStore(rootReducer,
   devTools,
@@ -16,5 +18,7 @@ const store = createStore(rootReducer,
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history} >
+      <Route to='/' component={AppContainer} />
+    </ConnectedRouter>
   </Provider>, document.getElementById('main'));
