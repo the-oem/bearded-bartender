@@ -18,10 +18,16 @@ function getAllUsers(req, res) {
 function getUser(req, res) {
   db('users').where(req.body).select()
     .then((users) => {
-      if (users.length) {
-        res.status(200).json(users);
-      } else {
-        res.status(404).json({ error: 'Could not find matching user.' });
+      switch (users.length) {
+        case 0:
+          res.status(404).json({ error: 'Could not find matching user.' });
+          break;
+        case 1:
+          res.status(200).json(users[0]);
+          break;
+        default:
+          res.status(404).json({ error: 'Found more than 1 matching user. Uhhh, wtf?' });
+          break;
       }
     })
     .catch((error) => {
