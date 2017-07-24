@@ -8,6 +8,7 @@ export const userIsAuthenticated = (bool) => {
 };
 
 export const userAuthenticationSuccess = (user) => {
+  console.log('user', user);
   return {
     type: 'USER_AUTHENTICATION_SUCCESS',
     user,
@@ -15,24 +16,33 @@ export const userAuthenticationSuccess = (user) => {
 };
 
 export const userAuthenticationFailure = (error) => {
+  console.log('ERROR', error);
   return {
     type: 'USER_AUTHENTICATION_FAILURE',
     error,
   };
 };
 
+export const accountCreationFailure = (error) => {
+  console.log('ERROR', error);
+  return {
+    type: 'ACCOUNT_CREATION_FAILURE',
+    error,
+  };
+};
+
 export const createAccountAction = (state) => {
-  console.log('in createAccountAction');
   return (dispatch) => {
-    return new ApiUtils().createUser(state.name, state.email, state.password)
+    return new ApiUtils().createUser(state.firstName, state.lastName, state.email, state.password)
       .then((response) => {
         if (response.name === 'Error') throw Error('Unable to create user.');
-        // const user = formatAuthForStorage(state.name, state.email, response.id);
-        // saveToCache('authenticatedUser', user);
-        // dispatch(userLoginFromCache(user));
+        // TODO Implement local storage for user authentication
+        dispatch(userIsAuthenticated(true));
+        dispatch(userAuthenticationSuccess(response.id[0]));
       })
       .catch((err) => {
         dispatch(userIsAuthenticated(false));
+        dispatch(accountCreationFailure(err));
       });
   };
 };

@@ -56,7 +56,7 @@ export default class Login extends Component {
                 onChange={(e) => { this.setState({ password: e.target.value }); }}/>
               <button className='btn-login'>Login</button>
             </form>
-            <h3 className='error-msg'>{this.props.errorMessage}</h3>
+            <h3 className='error-msg'>{this.props.loginErrorMessage}</h3>
             <p className='create-acct-prompt'>Don't have an account?</p>
             <button onClick={this.handleClick}>Create Account</button>
           </div>

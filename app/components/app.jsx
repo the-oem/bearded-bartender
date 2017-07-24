@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { render } from 'react-dom';
 import { Route, Redirect } from 'react-router-dom';
 import LoginContainer from '../containers/Login/LoginContainer';
 import SearchContainer from '../containers/Search/SearchContainer';
@@ -11,9 +10,7 @@ export default class App extends Component {
     return (
       <div>
         <LoginContainer />
-        <Route exact path='/' render={({ match }) => {
-          <SearchContainer history={history} location='home' />;
-        }}/>
+        <Route exact path='/' render={({ match }) => <SearchContainer history={history} location='home' />}/>
 
         <Route exact path='/create-account'
                 render={props =>
