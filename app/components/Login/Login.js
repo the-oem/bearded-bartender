@@ -23,7 +23,7 @@ export default class Login extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    // this.props.history.push('/create-account');
+    this.props.history.push('/create-account');
   }
 
   submitLogout() {
