@@ -30,3 +30,12 @@ export const userAuthenticationSuccess = (state = {}, action) => {
       return state;
   }
 };
+
+export const accountCreationFailure = (state = {}, action) => {
+  switch (action.type) {
+    case 'ACCOUNT_CREATION_FAILURE':
+      return { message: action.error.message };
+    default:
+      return state;
+  }
+};

@@ -7,12 +7,8 @@ const apiKey = require('./ADDbApiKey');
 
 function getAllUsers(req, res) {
   db('users').select()
-    .then((users) => {
-      res.status(200).json(users);
-    })
-    .catch((error) => {
-      res.status(500).json({ error });
-    });
+    .then(users => res.status(200).json(users))
+    .catch(error => res.status(500).json({ error }));
 }
 
 function getUser(req, res) {
@@ -30,9 +26,7 @@ function getUser(req, res) {
           break;
       }
     })
-    .catch((error) => {
-      res.status(500).json({ error });
-    });
+    .catch(error => res.status(500).json({ error }));
 }
 
 function createUser(req, res) {
@@ -60,12 +54,8 @@ function getAllFavorites(req, res) {
   const userId = parseInt(req.params.id, 10);
 
   db('favorites').where('user_id', userId).select()
-    .then((favorites) => {
-      res.status(200).json(favorites);
-    })
-    .catch((error) => {
-      res.status(500).json({ error });
-    });
+    .then(favorites => res.status(200).json(favorites))
+    .catch(error => res.status(500).json({ error }));
 }
 
 function deleteFavorite(req, res) {
@@ -86,14 +76,11 @@ function getDrinks(req, res) {
     uri: constants.DRINKS_URL + apiKey.API_KEY + constants.PAGE_SIZE_10,
     json: true,
   }, (error, response, body) => {
-    if (!error && response.statusCode === 200) {
-      res.send(body);
-    }
+    if (!error && response.statusCode === 200) res.status(200).send(body);
   });
 }
 
 function getDrinksSearch(req, res) {
-  console.log(constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY + constants.PAGE_SIZE_10);
   request({
     uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY + constants.PAGE_SIZE_10,
     json: true,

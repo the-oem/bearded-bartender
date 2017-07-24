@@ -3,9 +3,8 @@ import Login from '../../components/Login/Login';
 import { lookupUserAction, userIsAuthenticated } from '../../actions/users';
 
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps', state);
   return {
-    errorMessage: state.userAuthenticationFailure.message,
+    loginErrorMessage: state.userAuthenticationFailure.message,
     user: state.userAuthenticationSuccess,
     userIsAuthenticated: state.userIsAuthenticated,
   };

@@ -6,11 +6,10 @@ export default class CreateAccount extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
-      message: '',
-      status: '',
     };
   }
 
@@ -20,16 +19,19 @@ export default class CreateAccount extends Component {
   }
 
   render() {
-    console.log('create account props', this.props);
-    const errorMessage = this.state.message === 'Internal Server Error' ? 'Email has already been used' : '';
     return (
       <div className='create-account-container'>
         <form className='input-form'>
-          <input className='name-input'
+          <input className='first-name-input'
                  type='text'
-                 value={this.state.name}
-                 placeholder='Name'
-                 onChange={(e) => { this.setState({ name: e.target.value }); }}/>
+                 value={this.state.firstName}
+                 placeholder='First'
+                 onChange={(e) => { this.setState({ firstName: e.target.value }); }}/>
+          <input className='last-name-input'
+                type='text'
+                value={this.state.lastName}
+                placeholder='Last'
+                onChange={(e) => { this.setState({ lastName: e.target.value }); }}/>
           <input className='email-input'
                  type='text'
                  value={this.state.email}
@@ -43,7 +45,7 @@ export default class CreateAccount extends Component {
           <button className='create-account-submit-btn'
                   onClick={this.handleClick.bind(this)}>Create Account</button>
         </form>
-        <h3 className='error-msg'>{errorMessage}</h3>
+        <h3 className='error-msg'>{this.props.createAccountErrorMessage}</h3>
       </div>
     );
   }
