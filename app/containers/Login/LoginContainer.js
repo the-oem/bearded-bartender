@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Login from '../../components/Login/Login';
-import { lookupUserAction, userIsAuthenticated } from '../../actions/users';
+import { lookupUserAction, logoutUserAction } from '../../actions/users';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleAuthentication: state => dispatch(lookupUserAction(state)),
-    handleLogout: () => dispatch(userIsAuthenticated(false)),
+    handleLogout: () => dispatch(logoutUserAction()),
   };
 };
 
