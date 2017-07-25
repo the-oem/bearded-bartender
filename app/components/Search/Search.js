@@ -39,10 +39,7 @@ export default class Search extends Component {
           </div>
         }
         {this.props.items.result &&
-          <div>
-            <p>{this.props.items.totalResult} drinks found!</p>
-            <DrinkList results={this.props.items} handlePagination={this.handlePagination}/>
-          </div>
+          <DrinkList results={this.props.items} handlePagination={this.handlePagination}/>
         }
       </div>
     );

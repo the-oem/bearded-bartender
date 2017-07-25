@@ -14,6 +14,7 @@ export default class App extends Component {
 
   render() {
     const { items } = this.props;
+    console.log('props', this.props);
     return (
       <div>
         <LoginContainer {...this.props} />
@@ -24,6 +25,7 @@ export default class App extends Component {
               (this.props.userIsAuthenticated ?
               <Redirect to='/' /> :
               <CreateAccountContainer location='create-account' {...props} />)} />
+        <Route exact path='/browse/occasion' render={({ match }) => <BrowseContainer history={history} location='occasion' />}/>
       </div>
     );
   }
