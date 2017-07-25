@@ -11,5 +11,6 @@ router.get('/users/:id/favorites', controller.getAllFavorites);
 router.delete('/users/:user_id/favorites/:drink_id', controller.deleteFavorite);
 router.get('/drinks', controller.getDrinks);
 router.post('/drinks/search', controller.getDrinksSearch);
+router.post('/fetch', controller.getUrl);
 
 module.exports = router;

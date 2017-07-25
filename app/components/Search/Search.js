@@ -9,6 +9,7 @@ export default class Search extends Component {
       input: '',
     };
     this.handleSearch = this.handleSearch.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +21,10 @@ export default class Search extends Component {
     this.props.fetchDrinksSearch(this.state.input);
   }
 
+  handlePagination(url) {
+    this.props.fetchUrl(url);
+  }
+
   render() {
     return (
       <div>
@@ -28,9 +33,15 @@ export default class Search extends Component {
           <input type='text' value={this.state.input} placeholder='Search for a drink...' onChange={e => this.setState({ input: e.target.value })}/>
           <button>Search</button>
         </form>
+        {this.props.isLoading &&
+          <div>
+            Loading...
+          </div>
+        }
         {this.props.items.result &&
           <div>
-            <DrinkList results={this.props.items} />
+            <p>{this.props.items.totalResult} drinks found!</p>
+            <DrinkList results={this.props.items} handlePagination={this.handlePagination}/>
           </div>
         }
       </div>

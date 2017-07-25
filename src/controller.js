@@ -89,6 +89,15 @@ function getDrinksSearch(req, res) {
   });
 }
 
+function getUrl(req, res) {
+  request({
+    uri: req.body.url,
+    json: true,
+  }, (error, response, body) => {
+    if (!error && response.statusCode === 200) res.status(200).send(body);
+  });
+}
+
 module.exports = {
   getAllUsers,
   getUser,
@@ -98,4 +107,5 @@ module.exports = {
   deleteFavorite,
   getDrinks,
   getDrinksSearch,
+  getUrl,
 };
