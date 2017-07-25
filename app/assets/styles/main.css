@@ -7,11 +7,32 @@ body {
 #main h1 {
   padding: 20px;
   border-bottom: 1px dashed #aaa;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0, 0, 0, 0.6);
   font-weight: 100;
   font-family: sans-serif;
 }
 
 #main {
   text-align: center;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-results-container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.drink-result {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
 }
