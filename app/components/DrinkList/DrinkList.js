@@ -1,17 +1,16 @@
 import React from 'react';
 import Drink from '../Drink/Drink';
 
-const DrinkList = (drinks) => {
-  console.log('drinks to display', drinks);
-  const renderDrinks = drinks.results.result.map(drink => <Drink drink={drink} />);
+const DrinkList = ({ results, handlePagination }) => {
+  const renderDrinks = results.result.map((drink, i) => <Drink drink={drink} key={i}/>);
   return (
     <div>
-      {drinks.results.previous &&
-        <button>Prev</button>
+      {results.previous &&
+        <button onClick={() => handlePagination(results.previous)}>Prev</button>
       }
       {renderDrinks}
-      {drinks.results.next &&
-        <button>Next</button>
+      {results.next &&
+        <button onClick={() => handlePagination(results.next)}>Next</button>
       }
     </div>
   );

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Search from '../../components/Search/Search';
-import { fetchDrinksSearchAction } from '../../actions/search';
+import { fetchDrinksSearchAction, fetchUrlAction } from '../../actions/search';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchDrinksSearch: input => dispatch(fetchDrinksSearchAction(input)),
+    fetchUrl: url => dispatch(fetchUrlAction(url)),
   };
 };
 

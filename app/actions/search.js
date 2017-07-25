@@ -15,10 +15,21 @@ export const itemsIsLoading = (bool) => {
 };
 
 export const itemsFetchDataSuccess = (results) => {
-  console.log('ITEMS_FETCH_DATA_SUCCESS firing...', results);
   return {
     type: 'ITEMS_FETCH_DATA_SUCCESS',
     results,
+  };
+};
+
+export const fetchUrlAction = (url) => {
+  return (dispatch) => {
+    dispatch(itemsIsLoading(true));
+    return new ApiUtils().fetchUrl(url)
+    .then((results) => {
+      dispatch(itemsFetchDataSuccess(results));
+      dispatch(itemsIsLoading(false));
+    })
+    .catch(() => dispatch(itemsHasErrored(true)));
   };
 };
 
@@ -27,7 +38,6 @@ export const fetchDrinksSearchAction = (input) => {
     dispatch(itemsIsLoading(true));
     return new ApiUtils().fetchSearchDrinks(input)
       .then((results) => {
-        console.log('results', results);
         dispatch(itemsFetchDataSuccess(results));
         dispatch(itemsIsLoading(false));
       })

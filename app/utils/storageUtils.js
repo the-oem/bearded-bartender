@@ -21,3 +21,5 @@ export const saveAuthToStorage = (user) => {
 };
 
 export const removeAuthFromStorage = () => removeFromCache(AUTH_CACHE_KEY);
+
+export const getLoginFromCache = () => getFromCache(AUTH_CACHE_KEY);

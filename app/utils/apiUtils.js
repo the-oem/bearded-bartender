@@ -1,4 +1,4 @@
-import { GET_USER_URL, GET_DRINKS_URL, GET_SEARCH_DRINKS_URL, CREATE_USER_URL } from './constants';
+import { GET_USER_URL, GET_DRINKS_URL, GET_SEARCH_DRINKS_URL, CREATE_USER_URL, GET_URL } from './constants';
 
 export default class ApiUtils {
 
@@ -57,6 +57,23 @@ export default class ApiUtils {
       },
       body: JSON.stringify({
         input,
+      }),
+    })
+    .then((response) => {
+      if (!response.ok) throw Error(response.statusText);
+      return response.json();
+    })
+    .catch(error => error);
+  }
+
+  fetchUrl(url) {
+    return fetch(GET_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url,
       }),
     })
     .then((response) => {
