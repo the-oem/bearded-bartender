@@ -23,6 +23,7 @@ if (app.get('env') === 'development') {
     noInfo: true,
     publicPath: config.output.publicPath,
   }));
+
   app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render('error', {
@@ -45,7 +46,7 @@ app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
 app.get('/', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')); });
 
 app.use('/api', router);
-app.get('/*', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')); });
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, '/../index.html')));
 
 app.listen(port);
 

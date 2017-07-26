@@ -30,7 +30,10 @@ export default class Search extends Component {
       <div>
         <Logo />
         <form onSubmit={this.handleSearch}>
-          <input type='text' value={this.state.input} placeholder='Search for a drink...' onChange={e => this.setState({ input: e.target.value })}/>
+          <input type='text'
+            value={this.state.input}
+            placeholder='Search for a drink...'
+            onChange={e => this.setState({ input: e.target.value })}/>
           <button>Search</button>
         </form>
         {this.props.isLoading &&
@@ -39,7 +42,9 @@ export default class Search extends Component {
           </div>
         }
         {this.props.items.result &&
-          <DrinkList results={this.props.items} handlePagination={this.handlePagination}/>
+          <DrinkList
+            results={this.props.items}
+            handlePagination={this.handlePagination}/>
         }
       </div>
     );

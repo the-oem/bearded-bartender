@@ -10,3 +10,4 @@ export const DELETE_FAVORITE_URL = '/api/users/{user_id}/favorites/{drink_id}';
 export const GET_URL = '/api/fetch';
 export const GET_DRINKS_URL = '/api/drinks';
 export const GET_SEARCH_DRINKS_URL = '/api/drinks/search';
+export const GET_DRINK_BY_ID = '/api/drink/';

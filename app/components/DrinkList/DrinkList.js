@@ -1,8 +1,12 @@
 import React from 'react';
-import Drink from '../Drink/Drink';
+import { Link } from 'react-router-dom';
+import DrinkCard from '../DrinkCard/DrinkCard';
 
 const DrinkList = ({ results, handlePagination, isLoading }) => {
-  const renderDrinks = results.result.map((drink, i) => <Drink drink={drink} key={i}/>);
+  const renderDrinks = results.result.map((drink, i) => {
+    return <Link to={`/drink/${drink.id}`} key={i}><DrinkCard drink={drink} key={i}/></Link>;
+  });
+
   return (
     <div>
       <p>{results.totalResult} drinks found!</p>

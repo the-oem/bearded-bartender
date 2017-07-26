@@ -80,6 +80,14 @@ function getDrinks(req, res) {
   });
 }
 
+function getDrink(req, res) {
+  console.log(req.params);
+  console.log(`${constants.DRINK_URL + req.params.id}/${apiKey.API_KEY}`);
+  request((`${constants.DRINK_URL + req.params.id}/${apiKey.API_KEY}`), (error, response, body) => {
+    if (!error && response.statusCode === 200) res.status(200).send(body);
+  });
+}
+
 function getDrinksSearch(req, res) {
   request({
     uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY + constants.PAGE_SIZE_10,
@@ -108,4 +116,5 @@ module.exports = {
   getDrinks,
   getDrinksSearch,
   getUrl,
+  getDrink,
 };
