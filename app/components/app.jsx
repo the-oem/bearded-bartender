@@ -13,10 +13,8 @@ export default class App extends Component {
     if (user) this.props.loginFromCache(user);
   }
 
-
   render() {
     const { items } = this.props;
-    console.log('props', this.props);
     return (
       <div>
         <LoginContainer {...this.props} />
@@ -29,7 +27,6 @@ export default class App extends Component {
               <CreateAccountContainer location='create-account' {...props} />)} />
 
         <Route path='/drink/:id' component={DrinkDetailContainer} />
-
       </div>
     );
   }
