@@ -1,4 +1,4 @@
-import { GET_USER_URL, GET_DRINKS_URL, GET_SEARCH_DRINKS_URL, CREATE_USER_URL, GET_URL } from './constants';
+import { GET_USER_URL, GET_DRINKS_URL, GET_SEARCH_DRINKS_URL, CREATE_USER_URL, GET_URL, GET_DRINK_BY_ID } from './constants';
 
 export default class ApiUtils {
 
@@ -64,6 +64,12 @@ export default class ApiUtils {
       return response.json();
     })
     .catch(error => error);
+  }
+
+  fetchDrinkById(id) {
+    return fetch(GET_DRINK_BY_ID + id)
+      .then(response => response.json())
+      .then(response => console.log(response));
   }
 
   fetchUrl(url) {

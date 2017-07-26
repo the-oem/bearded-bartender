@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import LoginContainer from '../containers/Login/LoginContainer';
 import SearchContainer from '../containers/Search/SearchContainer';
 import CreateAccountContainer from '../containers/CreateAccount/CreateAccountContainer';
+import DrinkDetailContainer from '../containers/DrinkDetail/DrinkDetailContainer';
 import { getLoginFromCache } from '../utils/storageUtils';
 
 export default class App extends Component {
@@ -11,6 +12,7 @@ export default class App extends Component {
     const user = getLoginFromCache();
     if (user) this.props.loginFromCache(user);
   }
+
 
   render() {
     const { items } = this.props;
@@ -25,7 +27,9 @@ export default class App extends Component {
               (this.props.userIsAuthenticated ?
               <Redirect to='/' /> :
               <CreateAccountContainer location='create-account' {...props} />)} />
-        <Route exact path='/browse/occasion' render={({ match }) => <BrowseContainer history={history} location='occasion' />}/>
+
+        <Route path='/drink/:id' component={DrinkDetailContainer} />
+
       </div>
     );
   }
