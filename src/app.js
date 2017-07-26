@@ -42,14 +42,11 @@ if (app.get('env') === 'development') {
 }
 
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
-// app.use(express.static(__dirname + 'app'));
 
 app.get('/', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')); });
 
 app.use('/api', router);
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../index.html'));
-});
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, '/../index.html')));
 
 app.listen(port);
 

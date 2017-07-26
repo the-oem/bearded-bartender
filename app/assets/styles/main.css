@@ -36,3 +36,20 @@ body {
   padding: 20px;
   cursor: pointer;
 }
+
+.drink-container {
+  width: 600px;
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
+}
+
+.drink-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.drink-info span {
+  text-align: left;
+}

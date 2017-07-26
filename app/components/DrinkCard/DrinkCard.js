@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Drink = ({ drink }) => {
+const DrinkCard = ({ drink }) => {
   const drinkImage = `http://assets.absolutdrinks.com/drinks/transparent-background-white/75x200/${drink.id}.png`;
   return (
     <div className='drink-result'>
@@ -10,4 +10,4 @@ const Drink = ({ drink }) => {
   );
 };
 
-export default Drink;
+export default DrinkCard;
