@@ -35,12 +35,11 @@ export default class Login extends Component {
   }
 
   render() {
-    console.log('login', this.props);
     return (
       <div className='login-container'>
         {!this.props.userIsAuthenticated &&
-          <div>
-            <form className='input-form' onSubmit={this.submitAuthentication}>
+          <div className='login-form-container'>
+            <form className='login-form' onSubmit={this.submitAuthentication}>
               <input type='text'
                 value={this.state.email}
                 placeholder='Email'
@@ -57,7 +56,7 @@ export default class Login extends Component {
             <p className='create-acct-prompt'>
               Don't have an account? <Link to='/create-account'>Register.</Link>
             </p>
-            <h3 className='error-msg'>{this.props.loginErrorMessage}</h3>
+            <p className='error-msg'>{this.props.loginErrorMessage}</p>
           </div>
         }
         {this.props.userIsAuthenticated &&

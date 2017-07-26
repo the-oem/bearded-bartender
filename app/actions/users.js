@@ -64,7 +64,7 @@ export const lookupUserAction = ({ email, password }) => {
   return (dispatch) => {
     return new ApiUtils().fetchUser(email, password)
       .then((response) => {
-        if (response.name === 'Error') throw Error('User not found. Incorrect username or password.');
+        if (response.name === 'Error') throw Error('Incorrect username or password.');
         dispatch(userIsAuthenticated(true));
         dispatch(userAuthenticationSuccess(response));
         saveAuthToStorage(response);
