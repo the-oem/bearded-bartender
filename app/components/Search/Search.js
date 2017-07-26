@@ -32,9 +32,10 @@ export default class Search extends Component {
         <form onSubmit={this.handleSearch}>
           <input type='text'
             value={this.state.input}
+            className='search-bar'
             placeholder='Search for a drink...'
             onChange={e => this.setState({ input: e.target.value })}/>
-          <button>Search</button>
+          <button className='btn-search'>Search</button>
         </form>
         {this.props.isLoading &&
           <div>

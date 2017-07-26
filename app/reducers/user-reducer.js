@@ -23,7 +23,8 @@ export const userAuthenticationSuccess = (state = {}, action) => {
     case 'USER_AUTHENTICATION_SUCCESS':
       return {
         id: action.user.id,
-        name: `${action.user.first_name} ${action.user.last_name}`,
+        fullName: `${action.user.first_name} ${action.user.last_name}`,
+        firstName: action.user.first_name,
         email: action.user.email,
       };
     default:

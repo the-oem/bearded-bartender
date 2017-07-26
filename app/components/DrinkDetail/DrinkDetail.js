@@ -8,6 +8,7 @@ export default class DrinkDetail extends Component {
     this.state = {
       drink: null,
       imageLoaded: false,
+      cameFromSearch: false,
     };
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
   }
@@ -16,7 +17,7 @@ export default class DrinkDetail extends Component {
     let drink;
     if (this.props.items.result) {
       drink = this.props.items.result.find(item => item.id === this.props.match.params.id);
-      this.setState({ drink });
+      this.setState({ drink, cameFromSearch: true });
     }
     if (!drink) {
       drink = new ApiUtils().fetchDrinkById(this.props.match.params.id)
@@ -32,7 +33,7 @@ export default class DrinkDetail extends Component {
   }
 
   render() {
-    if (!this.state.drink || !this.state.imageLoaded) {
+    if (!this.state.drink) {
       return (
         <div>Loading...</div>
       );
@@ -43,9 +44,10 @@ export default class DrinkDetail extends Component {
     const tastes = drink.tastes.map((item, i) => <li key={i}>{item.text}</li>);
     return (
       <div className='drink-container'>
-        <img src={drinkImage} alt={drink.id} className='drink-detail-image' onLoad={this.handleImageLoaded}/>
+        <div><img src={drinkImage} alt={drink.id} className='drink-detail-image' onLoad={this.handleImageLoaded}/></div>
         <div className='drink-info'>
           <span>
+            {/* { TODO only show return to search if we came from search. } */}
             <button onClick={() => this.props.history.goBack()}>Back To Search</button>
             <button>Favorite</button>
           </span>

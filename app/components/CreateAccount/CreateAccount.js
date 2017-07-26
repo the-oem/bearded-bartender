@@ -21,27 +21,27 @@ export default class CreateAccount extends Component {
   render() {
     return (
       <div className='create-account-container'>
-        <form className='input-form'>
-          <input className='first-name-input'
+        <form className='create-account-form'>
+          <label>First Name: <input className='first-name-input'
                  type='text'
                  value={this.state.firstName}
                  placeholder='First'
-                 onChange={(e) => { this.setState({ firstName: e.target.value }); }}/>
-          <input className='last-name-input'
+                 onChange={(e) => { this.setState({ firstName: e.target.value }); }}/></label>
+          <label>Last Name: <input className='last-name-input'
                 type='text'
                 value={this.state.lastName}
                 placeholder='Last'
-                onChange={(e) => { this.setState({ lastName: e.target.value }); }}/>
-          <input className='email-input'
+                onChange={(e) => { this.setState({ lastName: e.target.value }); }}/></label>
+          <label>E-mail: <input className='email-input'
                  type='text'
                  value={this.state.email}
                  placeholder='Email'
-                 onChange={(e) => { this.setState({ email: e.target.value }); }}/>
-          <input className='password-input'
+                 onChange={(e) => { this.setState({ email: e.target.value }); }}/></label>
+          <label>Password: <input className='password-input'
                  type='text'
                  value={this.state.password}
                  placeholder='Password'
-                 onChange={(e) => { this.setState({ password: e.target.value }); }}/>
+                 onChange={(e) => { this.setState({ password: e.target.value }); }}/></label>
           <button className='create-account-submit-btn'
                   onClick={this.handleClick.bind(this)}>Create Account</button>
         </form>
