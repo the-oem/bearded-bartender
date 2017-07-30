@@ -26,6 +26,7 @@ export default class Search extends Component {
   }
 
   render() {
+    console.log('props in search', this.props);
     return (
       <div>
         <Logo />

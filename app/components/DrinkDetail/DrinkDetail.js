@@ -78,7 +78,7 @@ export default class DrinkDetail extends Component {
         <div className='drink-info'>
           <span>
             {this.state.cameFromSearch &&
-              <button onClick={() => this.props.history.goBack()}>Back To Search</button>
+              <button onClick={() => this.props.history.goBack()}>Back</button>
             }
             <button onClick={this.handleFavorite}>{faveBtnText}</button>
           </span>

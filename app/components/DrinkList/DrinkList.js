@@ -8,7 +8,7 @@ const DrinkList = ({ results, favorites, handlePagination, isLoading }) => {
     if (favorites.find(fave => fave.drink_id === drink.id)) {
       isFavorite = true;
     }
-    return <Link to={`/drink/${drink.id}`} key={i}><DrinkCard drink={drink} key={i} isFavorite={isFavorite}/></Link>;
+    return <Link to={`/drink/${drink.id}`} key={i}><DrinkCard drink={drink} id={drink.id} key={i} isFavorite={isFavorite}/></Link>;
   });
 
   console.log('faves', favorites);

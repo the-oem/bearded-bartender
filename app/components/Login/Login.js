@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { browserHistory } from 'react-router';
-// import { object } from 'prop-types';
-// import { getFromCache } from '../../helpers/storageUtils';
 
 export default class Login extends Component {
   constructor(props, context) {

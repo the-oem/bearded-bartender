@@ -4,6 +4,8 @@ import LoginContainer from '../containers/Login/LoginContainer';
 import SearchContainer from '../containers/Search/SearchContainer';
 import CreateAccountContainer from '../containers/CreateAccount/CreateAccountContainer';
 import DrinkDetailContainer from '../containers/DrinkDetail/DrinkDetailContainer';
+import FavoritesContainer from '../containers/Favorites/FavoritesContainer';
+
 import { getLoginFromCache } from '../utils/storageUtils';
 
 export default class App extends Component {
@@ -14,6 +16,7 @@ export default class App extends Component {
   }
 
   render() {
+    console.log('props', this.props);
     const { items } = this.props;
     return (
       <div>
@@ -27,6 +30,11 @@ export default class App extends Component {
               <CreateAccountContainer location='create-account' {...props} />)} />
 
         <Route path='/drink/:id' component={DrinkDetailContainer} />
+        <Route path='/favorites' component={FavoritesContainer} />
+
+        {/* <Route path='/favorites' render={({ match }) => <FavoritesContainer
+            favorites={this.props.favorites}
+            location='favorites' />}/> */}
       </div>
     );
   }
