@@ -13,8 +13,8 @@ exports.seed = function (knex, Promise) {
         }, 'id')
         .then((user) => {
           return knex('favorites').insert([
-            { user_id: user[0], drink_id: 12345 },
-            { user_id: user[0], drink_id: 54321 },
+            { user_id: user[0], drink_id: 'absolut-vodka-mule' },
+            { user_id: user[0], drink_id: 'whiskey-sour' },
           ]);
         })
         .then(() => console.log('Seeding complete!'))

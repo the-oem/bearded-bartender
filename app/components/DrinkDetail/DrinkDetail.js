@@ -9,27 +9,56 @@ export default class DrinkDetail extends Component {
       drink: null,
       imageLoaded: false,
       cameFromSearch: false,
+      isFavorite: false,
     };
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
+    this.handleFavorite = this.handleFavorite.bind(this);
   }
 
   componentDidMount() {
     let drink;
     if (this.props.items.result) {
       drink = this.props.items.result.find(item => item.id === this.props.match.params.id);
-      this.setState({ drink, cameFromSearch: true });
+      this.setState({
+        drink,
+        cameFromSearch: true,
+        isFavorite: this.setFavoriteStatus(drink),
+      });
     }
     if (!drink) {
       drink = new ApiUtils().fetchDrinkById(this.props.match.params.id)
         .then(response => response.result[0])
-        .then(response => this.setState({ drink: response }))
+        .then(response => this.setState({
+          drink: response,
+          isFavorite: this.setFavoriteStatus(response),
+        }))
         .catch(error => console.log(error));
     }
+  }
+
+  setFavoriteStatus(drink) {
+    if (this.props.favorites.find(fave => fave.drink_id === drink.id)) {
+      return true;
+    }
+    return false;
   }
 
   handleImageLoaded() {
     console.log('image loaded, setting state');
     this.setState({ imageLoaded: true });
+  }
+
+  handleFavorite() {
+    if (this.props.userIsAuthenticated) {
+      if (this.state.isFavorite) {
+        this.props.removeFavorite(this.props.userAuthenticationSuccess.id, this.state.drink.id);
+        this.setState({ isFavorite: false });
+      } else {
+        this.props.setFavorite(
+          this.props.userAuthenticationSuccess.id, this.state.drink.id);
+        this.setState({ isFavorite: true });
+      }
+    }
   }
 
   render() {
@@ -38,6 +67,7 @@ export default class DrinkDetail extends Component {
         <div>Loading...</div>
       );
     }
+    const faveBtnText = this.state.isFavorite ? 'Unfavorite' : 'Favorite';
     const drink = this.state.drink;
     const drinkImage = `http://assets.absolutdrinks.com/drinks/transparent-background-white/300x400/${drink.id}.png`;
     const ingredients = drink.ingredients.map((item, i) => <li key={i}>{item.textPlain}</li>);
@@ -47,9 +77,10 @@ export default class DrinkDetail extends Component {
         <div><img src={drinkImage} alt={drink.id} className='drink-detail-image' onLoad={this.handleImageLoaded}/></div>
         <div className='drink-info'>
           <span>
-            {/* { TODO only show return to search if we came from search. } */}
-            <button onClick={() => this.props.history.goBack()}>Back To Search</button>
-            <button>Favorite</button>
+            {this.state.cameFromSearch &&
+              <button onClick={() => this.props.history.goBack()}>Back To Search</button>
+            }
+            <button onClick={this.handleFavorite}>{faveBtnText}</button>
           </span>
           <span>{drink.name}</span>
           <span>{drink.descriptionPlain}</span>

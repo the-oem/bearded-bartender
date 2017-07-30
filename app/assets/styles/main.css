@@ -51,23 +51,23 @@ body {
 }
 
 .create-account-back-btn {
-  background-image: url('/assets/img/cancel.svg');
   margin: 10px 20px;
+  background-image: url('/assets/img/cancel.svg');
 }
 
 .create-account-submit-btn {
-  background-image: url('/assets/img/next.svg');
   margin: 10px 20px;
+  background-image: url('/assets/img/next.svg');
 }
 
 .btn-login {
-  background-image: url('/assets/img/login.svg');
   margin-left: 10px;
+  background-image: url('/assets/img/login.svg');
 }
 
 .btn-logout {
-  background-image: url('/assets/img/logout.svg');
   margin-left: 10px;
+  background-image: url('/assets/img/logout.svg');
 }
 
 .btn-login,
@@ -76,11 +76,11 @@ body {
 .create-account-submit-btn {
   width: 35px;
   height: 35px;
+  cursor: pointer;
   border: none;
   outline: none;
   background-color: Transparent;
   background-position: center;
-  cursor: pointer;
 }
 
 .btn-login:hover,
@@ -102,21 +102,21 @@ body {
 
 .create-account-container {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .create-account-form {
-  border: 1px solid black;
-  width: 400px;
-  padding: 15px;
-  border-radius: 5px;
-  background-color: #F7F0C3;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
+  width: 400px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #F7F0C3;
 }
 
 .create-account-input::-webkit-input-placeholder {
@@ -137,8 +137,8 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 24px;
   font-family: 'Acme', sans-serif;
+  font-size: 24px;
 }
 
 .error-msg {
@@ -151,8 +151,8 @@ body {
 }
 
 .beard-icon {
-  height: 36px;
   width: 36px;
+  height: 36px;
   margin: 0 5px;
 }
 
@@ -174,13 +174,13 @@ body {
   border: 1px solid #536767;
   border-radius: 5px;
   outline: none;
+  background-image: url('/assets/img/magnifying-glass.svg');
+  background-repeat: no-repeat;
+  background-position: 5px;
+  background-size: 35px;
   font-family: 'Raleway', sans-serif;
   font-size: 35px;
   font-weight: 300;
-  background-image: url('/assets/img/magnifying-glass.svg');
-  background-size: 35px;
-  background-repeat: no-repeat;
-  background-position: 5px;
 }
 
 .search-bar::-webkit-input-placeholder {
@@ -204,6 +204,10 @@ body {
   background-color: #fff;
   grid-template-columns: 100px 100px 100px 100px 100px;
   grid-gap: 10px;
+}
+
+.link-home {
+  text-decoration: none;
 }
 
 .drink-result {

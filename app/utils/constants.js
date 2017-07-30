@@ -1,4 +1,5 @@
 export const USE_CACHE = true;
+export const USE_STUB = true;
 export const AUTH_CACHE_KEY = 'authenticatedUser';
 
 export const GET_USER_URL = '/api/users';

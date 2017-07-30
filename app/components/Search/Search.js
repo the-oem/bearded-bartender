@@ -45,6 +45,7 @@ export default class Search extends Component {
         {this.props.items.result &&
           <DrinkList
             results={this.props.items}
+            favorites={this.props.favorites}
             handlePagination={this.handlePagination}/>
         }
       </div>
