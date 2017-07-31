@@ -41,27 +41,31 @@ function createUser(req, res) {
 }
 
 function addFavorite(req, res) {
+  console.log(req.body);
   db('favorites').insert(req.body, '*')
     .then(favorite => res.status(201).json({
       status: 'success',
       message: 'New favorite created',
       id: favorite,
     }))
-    .catch(error => res.status(500).json({ error }));
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ error });
+    });
 }
 
 function getAllFavorites(req, res) {
   const userId = parseInt(req.params.id, 10);
-
+  console.log('user', userId);
   db('favorites').where('user_id', userId).select()
     .then(favorites => res.status(200).json(favorites))
     .catch(error => res.status(500).json({ error }));
 }
 
 function deleteFavorite(req, res) {
-  const drinkId = parseInt(req.params.drink_id, 10);
+  const drinkId = req.params.drink_id;
   const userId = parseInt(req.params.user_id, 10);
-
+  console.log('deleting', userId, drinkId);
   db('favorites').where('user_id', userId).andWhere('drink_id', drinkId).del()
     .then(favorite => res.status(200).json({
       status: 'success',
@@ -73,7 +77,7 @@ function deleteFavorite(req, res) {
 
 function getDrinks(req, res) {
   request({
-    uri: constants.DRINKS_URL + apiKey.API_KEY + constants.PAGE_SIZE_10,
+    uri: constants.DRINKS_URL + apiKey.API_KEY + constants.PAGE_SIZE_6,
     json: true,
   }, (error, response, body) => {
     if (!error && response.statusCode === 200) res.status(200).send(body);
@@ -90,7 +94,7 @@ function getDrink(req, res) {
 
 function getDrinksSearch(req, res) {
   request({
-    uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY + constants.PAGE_SIZE_10,
+    uri: constants.SEARCH_DRINKS_URL.replace('{search_term}', req.body.input) + apiKey.API_KEY + constants.PAGE_SIZE_6,
     json: true,
   }, (error, response, body) => {
     if (!error && response.statusCode === 200) res.status(200).send(body);

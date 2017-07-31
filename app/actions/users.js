@@ -29,10 +29,49 @@ export const accountCreationFailure = (error) => {
   };
 };
 
+export const userAddFavorite = (response) => {
+  return {
+    type: 'USER_ADD_FAVORITE',
+    response,
+  };
+};
+
+export const userDeleteFavorite = (response) => {
+  return {
+    type: 'USER_DELETE_FAVORITE',
+    response,
+  };
+};
+
+export const userGetFavorites = (response) => {
+  return {
+    type: 'USER_FETCH_FAVORITES_SUCCESS',
+    response,
+  };
+};
+
+export const applicationDatabaseError = (error) => {
+  return {
+    type: 'APPLICATION_DATABASE_FAILURE',
+    error,
+  };
+};
+
 export const logoutUserAction = () => {
   return (dispatch) => {
     dispatch(userIsAuthenticated(false));
     removeAuthFromStorage();
+  };
+};
+
+export const fetchFavoritesAction = (userId) => {
+  return (dispatch) => {
+    return new ApiUtils().getFavorites(userId)
+    .then((response) => {
+      if (response.name === 'Error') throw Error('Unable to retrieve favorites.');
+      dispatch(userGetFavorites(response));
+    })
+    .catch(err => dispatch(applicationDatabaseError(err)));
   };
 };
 
@@ -41,6 +80,7 @@ export const userLoginFromCache = (user) => {
   return (dispatch) => {
     dispatch(userIsAuthenticated(true));
     dispatch(userAuthenticationSuccess({ first_name, last_name, email, id }));
+    dispatch(fetchFavoritesAction(id));
   };
 };
 
@@ -67,11 +107,38 @@ export const lookupUserAction = ({ email, password }) => {
         if (response.name === 'Error') throw Error('Incorrect username or password.');
         dispatch(userIsAuthenticated(true));
         dispatch(userAuthenticationSuccess(response));
+        dispatch(fetchFavoritesAction(response.id));
         saveAuthToStorage(response);
       })
       .catch((err) => {
         dispatch(userIsAuthenticated(false));
         dispatch(userAuthenticationFailure(err));
       });
+  };
+};
+
+export const setFavoriteAction = (userId, drink) => {
+  return (dispatch) => {
+    return new ApiUtils().addFavorite(userId, drink)
+      .then((response) => {
+        if (response.name === 'Error') throw Error('Unable to add favorite.');
+        dispatch(userAddFavorite(response));
+        dispatch(fetchFavoritesAction(userId));
+      })
+      .catch((err) => {
+        dispatch(applicationDatabaseError(err));
+      });
+  };
+};
+
+export const removeFavoriteAction = (userId, drinkId) => {
+  return (dispatch) => {
+    return new ApiUtils().deleteFavorite(userId, drinkId)
+    .then((response) => {
+      if (response.name === 'Error') throw Error('Unable to delete favorite.');
+      dispatch(userDeleteFavorite(response));
+      dispatch(fetchFavoritesAction(userId));
+    })
+    .catch(err => dispatch(applicationDatabaseError(err)));
   };
 };

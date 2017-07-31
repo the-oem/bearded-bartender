@@ -6,6 +6,8 @@ import {
   GET_URL,
   GET_DRINK_BY_ID,
   ADD_FAVORITE_URL,
+  GET_FAVORITES_URL,
+  DELETE_FAVORITE_URL,
 } from './constants';
 
 export default class ApiUtils {
@@ -48,7 +50,7 @@ export default class ApiUtils {
     .catch(error => error);
   }
 
-  addFavorite(userId, drinkId) {
+  addFavorite(userId, drink) {
     return fetch(ADD_FAVORITE_URL, {
       method: 'POST',
       headers: {
@@ -56,9 +58,35 @@ export default class ApiUtils {
       },
       body: JSON.stringify({
         user_id: userId,
-        drink_id: drinkId,
+        drink_id: drink.id,
+        name: drink.name,
+        rating: drink.rating,
       }),
     })
+    .then((response) => {
+      if (!response.ok) throw Error(response.statusText);
+      return response.json();
+    })
+    .catch(error => error);
+  }
+
+  deleteFavorite(userId, drinkId) {
+    console.log('=============', DELETE_FAVORITE_URL.replace('{user_id}', userId).replace('{drink_id}', drinkId));
+    return fetch(DELETE_FAVORITE_URL.replace('{user_id}', userId).replace('{drink_id}', drinkId), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      if (!response.ok) throw Error(response.statusText);
+      return response.json();
+    })
+    .catch(error => error);
+  }
+
+  getFavorites(userId) {
+    return fetch(GET_FAVORITES_URL.replace('{user_id}', userId))
     .then((response) => {
       if (!response.ok) throw Error(response.statusText);
       return response.json();

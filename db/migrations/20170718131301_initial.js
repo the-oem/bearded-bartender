@@ -14,7 +14,9 @@ exports.up = function (knex, Promise) {
       table.increments('id').primary();
       table.integer('user_id').unsigned();
       table.foreign('user_id').references('users.id');
-      table.integer('drink_id').unsigned();
+      table.string('drink_id');
+      table.string('name');
+      table.integer('rating').unsigned();
       table.timestamps(true, true);
     }),
   ]);
