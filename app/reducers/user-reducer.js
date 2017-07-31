@@ -44,9 +44,7 @@ export const accountCreationFailure = (state = {}, action) => {
 export const userAddFavorite = (state = {}, action) => {
   switch (action.type) {
     case 'USER_ADD_FAVORITE':
-      return {
-        addFavoriteMessage: action.response.message,
-      };
+      return { addFavoriteMessage: action.response.message };
 
     default:
       return state;
@@ -56,9 +54,7 @@ export const userAddFavorite = (state = {}, action) => {
 export const userDeleteFavorite = (state = {}, action) => {
   switch (action.type) {
     case 'USER_DELETE_FAVORITE':
-      return {
-        deleteFavoriteMessage: action.message,
-      };
+      return { deleteFavoriteMessage: action.message };
 
     default:
       return state;

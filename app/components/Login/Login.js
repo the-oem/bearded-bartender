@@ -29,11 +29,11 @@ export default class Login extends Component {
     this.setState({
       email: '',
       password: '',
+      firstName: '',
     });
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className='login-container'>
         <Logo />

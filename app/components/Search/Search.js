@@ -13,6 +13,7 @@ export default class Search extends Component {
   }
 
   componentDidMount() {
+    // TODO why am I doing this??
     this.setState({ input: '' });
   }
 
@@ -26,7 +27,6 @@ export default class Search extends Component {
   }
 
   render() {
-    console.log('isLoading in search', this.props.isLoading);
     return (
       <div className='search-container'>
         <form onSubmit={this.handleSearch}>
