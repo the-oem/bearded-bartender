@@ -69,22 +69,23 @@ export default class DrinkDetail extends Component {
         </div>
       );
     }
-    const faveBtnText = this.state.isFavorite ? 'Unfavorite' : 'Favorite';
+    const faveBtnClass = this.state.isFavorite ? 'btn-active-favorite' : 'btn-inactive-favorite';
     const drink = this.state.drink;
-    const drinkImage = `http://assets.absolutdrinks.com/drinks/transparent-background-white/300x400/${drink.id}.png`;
+    const drinkImage = `http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/300x400/${drink.id}.png`;
+
     const ingredients = drink.ingredients.map((item, i) => <li key={i}>{item.textPlain}</li>);
     const tastes = drink.tastes.map((item, i) => <li key={i}>{item.text}</li>);
     return (
       <div className='drink-container'>
         <div><img src={drinkImage} alt={drink.id} className='drink-detail-image' onLoad={this.handleImageLoaded}/></div>
         <div className='drink-info'>
-          <span>
+          <span className='detail-btn-container'>
             {this.state.cameFromSearch &&
-              <button onClick={() => this.props.history.goBack()} className='btn-back'>Back</button>
+              <button onClick={() => this.props.history.goBack()} className='btn-back'></button>
             }
-            <button className='btn-favorite' onClick={this.handleFavorite}>{faveBtnText}</button>
+            <button className={faveBtnClass} onClick={this.handleFavorite}></button>
           </span>
-          <span>{drink.name}</span>
+          <span className='detail-drink-name'>{drink.name}</span>
           <span>{drink.descriptionPlain}</span>
           <span>Ingredients: <ul>{ingredients}</ul></span>
           <span>Taste Profile: <ul>{tastes}</ul></span>

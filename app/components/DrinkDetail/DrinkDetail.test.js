@@ -64,7 +64,7 @@ describe('Drink Detail Component Testing', () => {
     expect(wrapper.find('.drink-detail-image')).toHaveLength(1);
 
     const src = wrapper.find('.drink-detail-image').prop('src');
-    expect(src).toEqual('http://assets.absolutdrinks.com/drinks/transparent-background-white/300x400/vodka-mule.png');
+    expect(src).toEqual('http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/300x400/vodka-mule.png');
   });
 
   it('should render a back button if user came from search', () => {
