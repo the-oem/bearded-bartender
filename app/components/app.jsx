@@ -5,7 +5,6 @@ import SearchContainer from '../containers/Search/SearchContainer';
 import CreateAccountContainer from '../containers/CreateAccount/CreateAccountContainer';
 import DrinkDetailContainer from '../containers/DrinkDetail/DrinkDetailContainer';
 import FavoritesContainer from '../containers/Favorites/FavoritesContainer';
-
 import { getLoginFromCache } from '../utils/storageUtils';
 
 export default class App extends Component {
@@ -18,7 +17,7 @@ export default class App extends Component {
   render() {
     const { items } = this.props;
     return (
-      <div>
+      <div className='app-container'>
         <LoginContainer {...this.props} />
         <Route exact path='/' render={({ match }) => <SearchContainer history={history} location='home' />}/>
 
