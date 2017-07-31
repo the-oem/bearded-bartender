@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setFavorite: (userId, drinkId) => (dispatch(setFavoriteAction(userId, drinkId))),
+    setFavorite: (userId, drink) => (dispatch(setFavoriteAction(userId, drink))),
     removeFavorite: (userId, drinkId) => (dispatch(removeFavoriteAction(userId, drinkId))),
   };
 };

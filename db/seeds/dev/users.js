@@ -13,8 +13,8 @@ exports.seed = function (knex, Promise) {
         }, 'id')
         .then((user) => {
           return knex('favorites').insert([
-            { user_id: user[0], drink_id: 'absolut-vodka-mule', name: 'Absolut Vodka Mule' },
-            { user_id: user[0], drink_id: 'whiskey-sour', name: 'Whiskey Sour' },
+            { user_id: user[0], drink_id: 'absolut-vodka-mule', name: 'Absolut Vodka Mule', rating: 40 },
+            { user_id: user[0], drink_id: 'whiskey-sour', name: 'Whiskey Sour', rating: 33 },
           ]);
         })
         .then(() => console.log('Seeding complete!'))

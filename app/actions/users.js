@@ -117,9 +117,9 @@ export const lookupUserAction = ({ email, password }) => {
   };
 };
 
-export const setFavoriteAction = (userId, drinkId) => {
+export const setFavoriteAction = (userId, drink) => {
   return (dispatch) => {
-    return new ApiUtils().addFavorite(userId, drinkId)
+    return new ApiUtils().addFavorite(userId, drink)
       .then((response) => {
         if (response.name === 'Error') throw Error('Unable to add favorite.');
         dispatch(userAddFavorite(response));
@@ -132,7 +132,6 @@ export const setFavoriteAction = (userId, drinkId) => {
 };
 
 export const removeFavoriteAction = (userId, drinkId) => {
-  console.log('getting into this action');
   return (dispatch) => {
     return new ApiUtils().deleteFavorite(userId, drinkId)
     .then((response) => {

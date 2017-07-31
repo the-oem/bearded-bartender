@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../Logo/Logo';
 
 export default class Login extends Component {
   constructor(props, context) {
@@ -32,8 +33,10 @@ export default class Login extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className='login-container'>
+        <Logo />
         {!this.props.userIsAuthenticated &&
           <div className='login-form-container'>
             <form className='login-form' onSubmit={this.submitAuthentication}>
@@ -58,7 +61,9 @@ export default class Login extends Component {
         }
         {this.props.userIsAuthenticated &&
           <div className='logout-container'>
-            Welcome, {this.props.user.firstName}! <button onClick={this.submitLogout} className='btn-logout' alt='Logout'></button>
+            Welcome, {this.props.user.firstName}!
+            <button onClick={this.submitLogout} className='btn-logout' alt='Logout'></button>
+            <Link to='/favorites'><button className='btn-favorites' alt='Favorites'></button></Link>
           </div>
         }
       </div>

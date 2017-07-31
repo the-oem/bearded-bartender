@@ -50,7 +50,7 @@ export default class ApiUtils {
     .catch(error => error);
   }
 
-  addFavorite(userId, drinkId, name) {
+  addFavorite(userId, drink) {
     return fetch(ADD_FAVORITE_URL, {
       method: 'POST',
       headers: {
@@ -58,8 +58,9 @@ export default class ApiUtils {
       },
       body: JSON.stringify({
         user_id: userId,
-        drink_id: drinkId,
-        name: drink_name,
+        drink_id: drink.id,
+        name: drink.name,
+        rating: drink.rating,
       }),
     })
     .then((response) => {

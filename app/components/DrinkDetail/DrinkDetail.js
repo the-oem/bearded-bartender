@@ -55,7 +55,7 @@ export default class DrinkDetail extends Component {
         this.setState({ isFavorite: false });
       } else {
         this.props.setFavorite(
-          this.props.userAuthenticationSuccess.id, this.state.drink.id);
+          this.props.userAuthenticationSuccess.id, this.state.drink);
         this.setState({ isFavorite: true });
       }
     }
@@ -64,7 +64,10 @@ export default class DrinkDetail extends Component {
   render() {
     if (!this.state.drink) {
       return (
-        <div>Loading...</div>
+        <div className='loading'>
+          <p>Loading</p>
+          <img src='/assets/img/loading.svg' className='img-loading' alt='loading spinner' />
+        </div>
       );
     }
     const faveBtnText = this.state.isFavorite ? 'Unfavorite' : 'Favorite';
