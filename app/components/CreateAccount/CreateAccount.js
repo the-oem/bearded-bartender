@@ -29,6 +29,7 @@ export default class CreateAccount extends Component {
               <label>First Name
               <input className='create-account-input'
                      type='text'
+                     id='accountFirstName'
                      value={this.state.firstName}
                      placeholder='First'
                      onChange={(e) => { this.setState({ firstName: e.target.value }); }}/></label>
@@ -36,6 +37,7 @@ export default class CreateAccount extends Component {
               <label>Last Name
               <input className='create-account-input'
                     type='text'
+                    id='accountLastName'
                     value={this.state.lastName}
                     placeholder='Last'
                     onChange={(e) => { this.setState({ lastName: e.target.value }); }}/></label>
@@ -43,6 +45,7 @@ export default class CreateAccount extends Component {
               <label>E-mail
               <input className='create-account-input'
                      type='text'
+                     id='accountEmail'
                      value={this.state.email}
                      placeholder='example@email.com'
                      onChange={(e) => { this.setState({ email: e.target.value }); }}/></label>
@@ -50,6 +53,7 @@ export default class CreateAccount extends Component {
               <label>password
               <input className='create-account-input'
                      type='password'
+                     id='accountPassword'
                      value={this.state.password}
                      placeholder='Password'
                      onChange={(e) => { this.setState({ password: e.target.value }); }}/></label>
