@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import DrinkCard from './DrinkCard';
 
-describe('Search Component Testing', () => {
+describe('Drink Card Component Testing', () => {
   const favoriteProps = {
     drink: {
       name: 'Vodka Mule',
@@ -12,14 +12,7 @@ describe('Search Component Testing', () => {
     id: 'vodka-mule',
   };
 
-  const notFavoriteProps = {
-    drink: {
-      name: 'Vodka Mule',
-      rating: 34,
-    },
-    isFavorite: false,
-    id: 'vodka-mule',
-  };
+  const notFavoriteProps = Object.assign({}, favoriteProps, { isFavorite: false });
 
   it('renders correct component when it mounts', () => {
     const wrapper = shallow(<DrinkCard {...favoriteProps}/>);

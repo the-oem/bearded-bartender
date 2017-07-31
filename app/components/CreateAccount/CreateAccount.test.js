@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CreateAccount from './CreateAccount';
 
-describe('Search Component Testing', () => {
+describe('Create Account Component Testing', () => {
   const mockFn = jest.fn();
   const wrapper = shallow(<CreateAccount />);
 

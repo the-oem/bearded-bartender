@@ -44,7 +44,6 @@ export default class DrinkDetail extends Component {
   }
 
   handleImageLoaded() {
-    console.log('image loaded, setting state');
     this.setState({ imageLoaded: true });
   }
 
@@ -81,9 +80,9 @@ export default class DrinkDetail extends Component {
         <div className='drink-info'>
           <span>
             {this.state.cameFromSearch &&
-              <button onClick={() => this.props.history.goBack()}>Back</button>
+              <button onClick={() => this.props.history.goBack()} className='btn-back'>Back</button>
             }
-            <button onClick={this.handleFavorite}>{faveBtnText}</button>
+            <button className='btn-favorite' onClick={this.handleFavorite}>{faveBtnText}</button>
           </span>
           <span>{drink.name}</span>
           <span>{drink.descriptionPlain}</span>

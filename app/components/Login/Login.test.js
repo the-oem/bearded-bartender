@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Login from './Login';
 
-describe('Search Component Testing', () => {
+describe('Login Component Testing', () => {
   const mockFn = jest.fn();
   const loggedOutProps = {
     userIsAuthenticated: false,
