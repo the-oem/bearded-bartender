@@ -8,13 +8,13 @@ export default class Search extends Component {
     super(props);
     this.state = {
       input: '',
+      randomQuote: null,
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
   }
 
   componentDidMount() {
-    // const quote = getRandomQuote();
     this.setState({ randomQuote: getRandomQuote() });
   }
 

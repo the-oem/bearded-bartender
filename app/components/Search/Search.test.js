@@ -23,6 +23,7 @@ describe('Search Component Testing', () => {
     const wrapper = shallow(<Search {...props}/>);
     const searchState = wrapper.state();
     expect(searchState.input).toEqual('');
+    expect(searchState.randomQuote).toEqual(null);
   });
 
   it('should let us edit state on change', () => {
@@ -49,6 +50,7 @@ describe('Search Component Testing', () => {
       items: {},
     };
     const wrapper = shallow(<Search {...props} />);
+    wrapper.setState({ randomQuote: {} });
     expect(wrapper.find('.coming-soon')).toHaveLength(1);
   });
 });
