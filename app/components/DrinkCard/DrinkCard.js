@@ -7,7 +7,7 @@ const DrinkCard = ({ drink, isFavorite, id }) => {
       <p className='drink-card-title'>{drink.name}</p>
       <div className='drink-card-info'>
         <div className='results-image-container'>
-          <img src={drinkImage} alt={id} className='results-image' onLoad={() => console.log('loaded', id)}/>
+          <img src={drinkImage} alt={id} className='results-image' />
         </div>
         <div className='drink-card-details'>
           <p>Rating</p>
