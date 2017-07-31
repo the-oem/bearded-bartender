@@ -41,7 +41,6 @@ function createUser(req, res) {
 }
 
 function addFavorite(req, res) {
-  console.log(req.body);
   db('favorites').insert(req.body, '*')
     .then(favorite => res.status(201).json({
       status: 'success',
@@ -56,7 +55,6 @@ function addFavorite(req, res) {
 
 function getAllFavorites(req, res) {
   const userId = parseInt(req.params.id, 10);
-  console.log('user', userId);
   db('favorites').where('user_id', userId).select()
     .then(favorites => res.status(200).json(favorites))
     .catch(error => res.status(500).json({ error }));
@@ -65,7 +63,6 @@ function getAllFavorites(req, res) {
 function deleteFavorite(req, res) {
   const drinkId = req.params.drink_id;
   const userId = parseInt(req.params.user_id, 10);
-  console.log('deleting', userId, drinkId);
   db('favorites').where('user_id', userId).andWhere('drink_id', drinkId).del()
     .then(favorite => res.status(200).json({
       status: 'success',
@@ -85,8 +82,6 @@ function getDrinks(req, res) {
 }
 
 function getDrink(req, res) {
-  console.log(req.params);
-  console.log(`${constants.DRINK_URL + req.params.id}/${apiKey.API_KEY}`);
   request((`${constants.DRINK_URL + req.params.id}/${apiKey.API_KEY}`), (error, response, body) => {
     if (!error && response.statusCode === 200) res.status(200).send(body);
   });

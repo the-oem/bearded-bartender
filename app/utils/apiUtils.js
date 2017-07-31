@@ -71,7 +71,6 @@ export default class ApiUtils {
   }
 
   deleteFavorite(userId, drinkId) {
-    console.log('=============', DELETE_FAVORITE_URL.replace('{user_id}', userId).replace('{drink_id}', drinkId));
     return fetch(DELETE_FAVORITE_URL.replace('{user_id}', userId).replace('{drink_id}', drinkId), {
       method: 'DELETE',
       headers: {

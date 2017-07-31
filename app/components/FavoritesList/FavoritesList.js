@@ -10,12 +10,11 @@ export default class FavoritesList extends Component {
     });
 
     return (
-      <div className='search-container'>
-        <div className='results-container'>
+      <div className='favorites-container'>
+          <p className='favorites-title'>Your favorite dranks!</p>
           <div className='search-results-container'>
             {renderDrinks}
           </div>
-        </div>
       </div>
     );
   }
