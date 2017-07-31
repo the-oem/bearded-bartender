@@ -437,3 +437,37 @@ a:active {
   border: none;
   border-radius: 5px;
 }
+
+.random-quote {
+  width: 550px;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 10px;
+  font-style: italic;
+  text-align: left;
+}
+
+.random-author {
+  width: 550px;
+  text-align: right;
+  font-weight: 300;
+  font-size: 24px;
+  margin: 10px;
+}
+
+.coming-soon {
+  width: 500px;
+  border-radius: 5px;
+  background: rgba(68, 68, 68, 0.8);
+  color: #FFF;
+  padding: 20px;
+  margin: 10px;
+}
+
+.zero-state-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 60px 0;
+}

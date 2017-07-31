@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DrinkList from '../DrinkList/DrinkList';
 import Logo from '../Logo/Logo';
+import { getRandomQuote } from '../../utils/genericUtils';
 
 export default class Search extends Component {
   constructor(props) {
@@ -13,8 +14,8 @@ export default class Search extends Component {
   }
 
   componentDidMount() {
-    // TODO why am I doing this??
-    this.setState({ input: '' });
+    // const quote = getRandomQuote();
+    this.setState({ randomQuote: getRandomQuote() });
   }
 
   handleSearch(e) {
@@ -38,14 +39,18 @@ export default class Search extends Component {
           <button className='btn-search'>Search</button>
         </form>
 
-        {!this.props.items.result &&
-          <div className='coming-soon'>
-            Coming Soon!
-              <li>Filter by taste profile</li>
-              <li>Filter by occasion</li>
-              <li>Search by ingredient</li>
-              <li>Browse How-To videos to level up your drink making skills</li>
-              <li>Add your own recipes</li>
+        {!this.props.items.result && this.state.randomQuote &&
+          <div className='zero-state-container'>
+            <p className='random-quote'>"{this.state.randomQuote.quote}"</p>
+            <p className='random-author'>~ {this.state.randomQuote.whoSaidIt}</p>
+            <div className='coming-soon'>
+              Coming Soon!
+                <li>Filter by taste profile</li>
+                <li>Filter by occasion</li>
+                <li>Search by ingredient</li>
+                <li>Browse How-To videos to level up your drink making skills</li>
+                <li>Add your own recipes</li>
+            </div>
           </div>
         }
 
