@@ -3,18 +3,24 @@ import { shallow } from 'enzyme';
 import Login from './Login';
 
 describe('Login Component Testing', () => {
-  const mockFn = jest.fn();
-  const loggedOutProps = {
-    userIsAuthenticated: false,
-  };
+  const handleAuthFn = jest.fn();
+  const handleLogoutFn = jest.fn();
+  let loggedOutProps;
+  let loggedInProps;
 
-  const loggedInProps = {
-    userIsAuthenticated: true,
-    user: {
-      firstName: 'Jason',
-    },
-    handleLogout: mockFn,
-  };
+  beforeEach(() => {
+    loggedOutProps = {
+      userIsAuthenticated: false,
+      handleAuthentication: handleAuthFn,
+    };
+    loggedInProps = {
+      userIsAuthenticated: true,
+      user: {
+        firstName: 'Jason',
+      },
+      handleLogout: handleLogoutFn,
+    };
+  });
 
   it('should render correct component when it mounts', () => {
     const wrapper = shallow(<Login {...loggedOutProps}/>);
@@ -51,12 +57,14 @@ describe('Login Component Testing', () => {
     expect(wrapper.state().password).toEqual(result2);
   });
 
-  it.skip('should call a function when the form is submitted', () => {
+  it('should call a function when the form is submitted', () => {
     const wrapper = shallow(<Login {...loggedOutProps}/>);
     const loginButton = wrapper.find('.btn-login');
     const loginForm = wrapper.find('.login-form');
 
-    loginForm.simulate('submit');
+    loginForm.simulate('submit', { preventDefault: () => {} });
+
+    expect(handleAuthFn).toHaveBeenCalledTimes(1);
   });
 
   it('should render a welcome message if you are logged in', () => {
@@ -75,12 +83,8 @@ describe('Login Component Testing', () => {
     const logoutBtn = wrapper.find('.btn-logout');
     expect(logoutBtn).toHaveLength(1);
     logoutBtn.simulate('click');
-    expect(mockFn).toHaveBeenCalledTimes(1);
+    expect(handleLogoutFn).toHaveBeenCalledTimes(1);
     logoutBtn.simulate('click');
-    expect(mockFn).toHaveBeenCalledTimes(2);
-  });
-
-  it.skip('should navigate to /favorites when the favorites button is clicked', () => {
-
+    expect(handleLogoutFn).toHaveBeenCalledTimes(2);
   });
 });
