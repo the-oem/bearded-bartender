@@ -59,7 +59,6 @@ describe('Login Component Testing', () => {
 
   it('should call a function when the form is submitted', () => {
     const wrapper = shallow(<Login {...loggedOutProps}/>);
-    const loginButton = wrapper.find('.btn-login');
     const loginForm = wrapper.find('.login-form');
 
     loginForm.simulate('submit', { preventDefault: () => {} });
