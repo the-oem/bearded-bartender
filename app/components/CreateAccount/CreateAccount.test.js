@@ -3,8 +3,16 @@ import { shallow } from 'enzyme';
 import CreateAccount from './CreateAccount';
 
 describe('Create Account Component Testing', () => {
-  const mockFn = jest.fn();
-  const wrapper = shallow(<CreateAccount />);
+  let wrapper;
+  let handleCreateAccountFn;
+
+  beforeEach(() => {
+    handleCreateAccountFn = jest.fn();
+    const props = {
+      handleCreateAccount: handleCreateAccountFn,
+    };
+    wrapper = shallow(<CreateAccount {...props}/>);
+  });
 
   it('should render correct component when it mounts', () => {
     expect(wrapper.find('.create-account-container')).toHaveLength(1);
@@ -59,7 +67,9 @@ describe('Create Account Component Testing', () => {
     expect(newState.password).toEqual('12345');
   });
 
-  it.skip('should invoke a function when the form is submitted', () => {
-
+  it('should invoke a function when the form is submitted', () => {
+    const createAcctForm = wrapper.find('.create-account-form');
+    createAcctForm.simulate('submit', { preventDefault: () => {} });
+    expect(handleCreateAccountFn).toHaveBeenCalledTimes(1);
   });
 });
